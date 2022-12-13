@@ -122,7 +122,111 @@ const homeTeamName = () => {
   return object.home.teamName;
 };
 
-const DestructuredHomeTeamName = () => gameObject().away.teamName;
-
 console.log(homeTeamName());
-console.log(DestructuredHomeTeamName());
+
+const numPointsScored = (player) => {
+  //console.log(player)
+  let object = gameObject();
+  for (let gameKey in object) {
+    let teamObj = object[gameKey];
+    // console.log(teamObj)
+    for (let teamKey in teamObj) {
+      let data = teamObj.players;
+      //console.log(data)
+      for (let key in data) {
+        // let points = data.points // get the points but not working
+        if (key === player) {
+          return data[player].points;
+        }
+      }
+    }
+  }
+};
+
+const shoeSize = (player) => {
+  let object = gameObject();
+  for (let gameKey in object) {
+    let teamObj = object[gameKey];
+    // console.log(teamObj)
+    for (let teamKey in teamObj) {
+      let data = teamObj.players;
+      //console.log(data)
+      for (let key in data) {
+        // let points = data.points // get the points but not working
+        if (key === player) {
+          return data[player].shoe;
+        }
+      }
+    }
+  }
+};
+
+const teamColors = (team) => {
+  // console.log(teams)
+  let object = gameObject();
+  for (let gameKey in object) {
+    let teamObj = object[gameKey];
+    //console.log(teamObj)
+    for (let teamKey in teamObj) {
+      let data = teamObj.teamName;
+      if (data === team) {
+        return teamObj.colors;
+      }
+    }
+  }
+};
+
+console.log(teamColors("Charlotte Hornets"));
+
+const teamNames = () => {
+  let teamArray = [];
+  let object = gameObject();
+
+  for (let game in object) {
+    let properties = object[game].teamName;
+    teamArray.push(properties);
+  }
+  return teamArray;
+};
+
+console.log(teamNames());
+
+const playerNumbers = (team) => {
+  let numArray = [];
+  let object = gameObject();
+
+  for (let game in object) {
+    let teamObj = object[game];
+    for (let teamKey in teamObj) {
+      let teamProfile = teamObj.players;
+      //console.log(teamObj.teamName)
+      for (let key in teamProfile) {
+        let jerseyNum = teamProfile[key].number;
+        if (teamObj.teamName === team) numArray.push(jerseyNum);
+      }
+      return numArray;
+    }
+  }
+};
+
+console.log(playerNumbers("Brooklyn Nets"));
+
+const playerStats = (player) => {
+  //console.log(player)
+  let object = gameObject();
+  for (let gameKey in object) {
+    let teamObj = object[gameKey];
+    // console.log(teamObj)
+    for (let teamKey in teamObj) {
+      let data = teamObj.players;
+      for (let key in data) {
+        // console.log(key)
+        // let points = data.points // get the points but not working
+        if (key === player) {
+          return data[player];
+        }
+      }
+    }
+  }
+};
+console.log(playerStats("Mason Plumlee"));
